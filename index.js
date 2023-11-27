@@ -6,7 +6,7 @@ const path = require('path');
 const app = express();
 const port = 8000;
 
-const upload = multer(); s
+const upload = multer(); 
 
 app.use(express.json());
 app.use(express.static(path.join(__dirname, 'static')));
