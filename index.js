@@ -6,23 +6,20 @@ const path = require('path');
 const app = express();
 const port = 8000;
 
-const upload = multer(); // Use Multer with default settings
+const upload = multer(); s
 
 app.use(express.json());
 app.use(express.static(path.join(__dirname, 'static')));
 
-// Serve HTML form for uploading notes
 app.get('/UploadForm.html', (req, res) => {
   res.sendFile(path.join(__dirname, 'UploadForm.html'));
 });
 
-// Get all notes
 app.get('/notes', (req, res) => {
   const notes = loadNotes();
   res.json(notes);
 });
 
-// Upload a new note
 app.post('/upload', upload.single('file'), (req, res) => {
   const { note_name, note } = req.body;
 
@@ -52,7 +49,6 @@ app.get('/notes/:noteName', (req, res) => {
   res.send(note.text);
 });
 
-// Update a note
 app.put("/notes/:noteName", express.text(), (req, res) => {
   const noteName = req.params.noteName;
   const updatedNoteText = req.body;
@@ -70,7 +66,6 @@ app.put("/notes/:noteName", express.text(), (req, res) => {
   }
 });
 
-// Delete a note
 app.delete('/notes/:noteName', (req, res) => {
   const noteName = req.params.noteName;
 
